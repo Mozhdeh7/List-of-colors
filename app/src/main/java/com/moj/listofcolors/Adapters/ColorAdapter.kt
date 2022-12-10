@@ -1,6 +1,7 @@
 package com.moj.listofcolors.Adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,19 +25,38 @@ class ColorAdapter(var context: Context, var myList: List<Color>) : BaseAdapter(
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        var colorListView: View
-        colorListView = LayoutInflater.from(context).inflate(R.layout.list_item, null)
+        val colorListView: View
+        var holder = ViewHolder()
 
-        val myimage = colorListView.findViewById<ImageView>(R.id.imageViewitem)
-        val mytext = colorListView.findViewById<TextView>(R.id.textViewitem)
+        if (p1 == null) {
 
-        mytext.text = myList[p0].name
+            colorListView = LayoutInflater.from(context).inflate(R.layout.list_item, null)
+            holder.ColorImageView = colorListView.findViewById(R.id.imageViewitem)
+            holder.ColorTextView = colorListView.findViewById(R.id.textViewitem)
+            Log.i("perform", "create a new row!")
+            colorListView.tag = holder // tag colorListView to using holder
+        } else {
+            Log.i("perform", "Recycle!")
+            holder = p1.tag as ViewHolder
+            colorListView = p1 // to recycle
 
-        var resourceID =
+        }
+
+
+
+        holder.ColorTextView?.text = myList[p0].name
+
+        val resourceID =
             context.resources.getIdentifier(myList[p0].image, "drawable", context.packageName)
 
-        myimage.setImageResource(resourceID)
+        holder.ColorImageView?.setImageResource(resourceID)
+
 
         return colorListView
     }
+}
+
+class ViewHolder {
+    var ColorImageView: ImageView? = null
+    var ColorTextView: TextView? = null
 }
