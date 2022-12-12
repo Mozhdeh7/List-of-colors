@@ -6,14 +6,14 @@ object DataService {
 
     var colors = listOf(
         Color("Dark Red", "darkred"),
-        Color("Blue", "blue"),
         Color("Fire", "fire"),
-        Color("Magenta", "magenta"),
-        Color("Navy", "navy"),
         Color("Orange", "orange"),
-        Color("Pink", "pink"),
+        Color("Navy", "navy"),
+        Color("Blue", "blue"),
         Color("Pinky", "pinky"),
-        Color("Purple", "purple"),
-        Color("Violet", "violet")
+        Color("Magenta", "magenta"),
+        Color("Violet", "violet"),
+        Color("Pink", "pink"),
+        Color("Purple", "purple")
     )
 }
